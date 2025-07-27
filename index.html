@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mustafa Arastoo's Desktop</title>
+    <link rel="icon" href="images/favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,18 +24,19 @@
 <body>
 
     <div id="boot-screen" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 text-green-400">
-        <p class="mb-4 text-sm sm:text-base">MUSTAFA-OS v1.0 BIOS</p>
+        <p class="mb-4 text-sm sm:text-base">MUSTAFA-OS v0.8 BIOS</p>
         <p id="boot-text" class="text-xs sm:text-sm"></p>
         <div id="progress-bar-container" class="w-1/2 h-6 border-2 border-green-400 mt-4 hidden p-1">
             <div id="progress-bar" class="h-full bg-green-400" style="width: 0%;"></div>
         </div>
     </div>
 
+    <!-- Desktop -->
     <main id="desktop" class="hidden h-screen w-screen p-4 flex flex-col items-start">
         <div class="desktop-icon-container flex flex-col space-y-4">
             <div class="desktop-icon" data-window="about-window">
                 <i class="fas fa-user-astronaut"></i>
-                <p>ABOUT.md</p>
+                <p>PROFILE.md</p>
             </div>
             <div class="desktop-icon" data-window="projects-window">
                 <i class="fas fa-rocket"></i>
@@ -47,9 +49,11 @@
         </div>
     </main>
 
+
+    <!-- Profile window -->
     <div id="about-window" class="window" style="top: 10%; left: 15%; width: 32rem;">
         <div class="window-header">
-            <span class="title">ABOUT.md</span>
+            <span class="title">PROFILE.md</span>
             <span class="close-btn" data-window="about-window">X</span>
         </div>
         <div class="window-content">
@@ -64,12 +68,15 @@
         </div>
     </div>
 
+
+    <!-- Projects window -->
     <div id="projects-window" class="window" style="top: 20%; left: 30%; width: 48rem;">
         <div class="window-header">
             <span class="title">C:\Projects</span>
             <span class="close-btn" data-window="projects-window">X</span>
         </div>
         <div class="window-content grid grid-cols-1 md:grid-cols-2 gap-6 content-start">
+            <!-- B1 English Test -->
             <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
                 <img src="images/b1.png" onerror="this.onerror=null;this.src=imageErrorURL" alt="B1 English Test" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
                 <h3 class="text-2xl" style="color: var(--header);">B1 English Test Preparation</h3>
@@ -79,6 +86,7 @@
                     <a href="https://github.com/arastoof/b1Test" target="_blank" class="hover:underline mt-2 block">View Codebase &rarr;</a>
                 </div>
             </div>
+            <!-- Rhythm -->
             <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
                 <img src="images/rhythm.png" onerror="this.onerror=null;this.src=imageErrorURL" alt="Rhythm" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
                 <h3 class="text-2xl" style="color: var(--header);">Rhythm</h3>
@@ -87,11 +95,13 @@
                     <a href="https://student.csc.liv.ac.uk/~sgmarast/rhythm/" target="_blank" class="hover:underline mt-2 block">View Site &rarr;</a>
                 </div>
             </div>
+            <!-- Ascend the Labyrinth -->
             <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
                 <img src="images/ascend.png" onerror="this.onerror=null;this.src=imageErrorURL;" alt="Ascend the Labyrinth" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
                 <h3 class="text-2xl" style="color: var(--header);">Ascend the Labyrinth</h3>
                 <p>Procedurally generated horror game created as my A-Levels project. (Unity, C#)</p>
             </div>
+            <!-- Palcentre -->
             <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
                 <img src="images/palcentre.png" onerror="this.onerror=null;this.src=imageErrorURL;" alt="palcentre.org" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
                 <h3 class="text-2xl" style="color: var(--header);">palcentre.org</h3>
@@ -100,6 +110,7 @@
                     <a href="https://palcentre.org" target="_blank" class="hover:underline mt-2 block">View Site &rarr;</a>
                 </div>
             </div>
+            <!-- Daredevil -->
             <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
                 <img src="images/daredevil.png" onerror="this.onerror=null;this.src=imageErrorURL;" alt="Daredevil" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
                 <h3 class="text-2xl" style="color: var(--header);">Daredevil (WIP)</h3>
@@ -108,6 +119,8 @@
         </div>
     </div>
 
+
+    <!-- Skills Window -->
     <div id="skills-window" class="window" style="top: 40%; left: 5%; width: 28rem;">
         <div class="window-header">
             <span class="title">SKILLS.sh</span>
@@ -118,6 +131,8 @@
         </div>
     </div>
 
+
+    <!-- Larger image -->
     <div id="image-viewer-window" class="window" style="top: 10%; left: 15%; width: 64rem;">
         <div class="window-header">
             <span id="image-viewer-title" class="title">Image Viewer</span>
@@ -128,6 +143,8 @@
         </div>
     </div>
 
+
+    <!-- Taskbar -->
     <div id="taskbar" class="hidden">
         <div class="flex items-center space-x-2">
             <button id="theme-toggle" class="taskbar-icon text-lg" title="Toggle Theme"><i class="fas fa-lightbulb"></i></button>
