@@ -1,0 +1,216 @@
+:root {
+    --dark-bg: #1a1a1a;
+    --dark-window-bg: rgba(30, 30, 30, 0.85);
+    --dark-text: #e0e0e0;
+    --dark-header: #00a8ff;
+    --dark-border: #00a8ff;
+    --dark-icon-bg: rgba(0, 168, 255, 0.1);
+
+    --light-bg: #d4d4d4;
+    --light-window-bg: rgba(240, 240, 240, 0.85);
+    --light-text: #2a2a2a;
+    --light-header: #005f99;
+    --light-border: #005f99;
+    --light-icon-bg: rgba(0, 95, 153, 0.1);
+}
+
+html.dark {
+    --bg: var(--dark-bg);
+    --window-bg: var(--dark-window-bg);
+    --text: var(--dark-text);
+    --header: var(--dark-header);
+    --border: var(--dark-border);
+    --icon-bg: var(--dark-icon-bg);
+}
+
+html:not(.dark) {
+    --bg: var(--light-bg);
+    --window-bg: var(--light-window-bg);
+    --text: var(--light-text);
+    --header: var(--light-header);
+    --border: var(--light-border);
+    --icon-bg: var(--light-icon-bg);
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.5s, color 0.5s;
+    overflow: hidden;
+    background-image:
+        linear-gradient(rgba(18, 18, 18, 0.5) .1em, transparent .1em),
+        linear-gradient(90deg, rgba(18, 18, 18, 0.5) .1em, transparent .1em);
+    background-size: 3em 3em;
+}
+
+#boot-screen { font-family: 'Press Start 2P', cursive; }
+.window {
+    font-family: 'VT323', monospace;
+    position: absolute;
+    border: 2px solid var(--border);
+    background-color: var(--window-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    resize: both;
+    overflow: auto;
+    min-width: 320px;
+    min-height: 200px;
+    display: none;
+}
+.window-header {
+    background-color: var(--header);
+    color: var(--bg);
+    padding: 5px 10px;
+    cursor: move;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.window-header .title { font-family: 'Press Start 2P', cursive; font-size: 0.8rem; }
+.window-content { 
+    padding: 15px; 
+    font-size: 1.5rem;
+    height: auto;
+    width: 100%;
+    object-fit: contain; 
+    max-height: 650px; 
+    overflow: auto;
+}
+.close-btn { cursor: pointer; font-weight: bold; }
+
+.desktop-icon {
+    cursor: pointer;
+    text-align: center;
+    width: 120px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+.desktop-icon:hover { background-color: var(--icon-bg); }
+.desktop-icon i { font-size: 48px; color: var(--header); }
+.desktop-icon p { margin-top: 8px; font-size: 1rem; }
+
+#taskbar {
+    font-family: 'Press Start 2P', cursive;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--header);
+    color: var(--bg);
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}
+/* New style for icons in the taskbar */
+.taskbar-icon {
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+.taskbar-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#mobile-dock { display: none; }
+#mobile-topbar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--window-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    z-index: 1000;
+    padding: 5px 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    .desktop-icon-container { display: none !important; }
+    #taskbar { display: none !important; }
+    #mobile-topbar { display: flex; }
+    .window {
+        position: fixed;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border: none;
+        resize: none;
+        max-width: none !important;
+        
+        padding-bottom: 80px;
+        padding-top: 40px;
+        
+        padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+        padding-top: calc(40px + env(safe-area-inset-top, 0px));
+
+        display: flex;
+        flex-direction: column;
+    }
+    .window-header { cursor: default; }
+    #mobile-dock {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        background-color: var(--window-bg);
+        backdrop-filter: blur(10px);
+        border-top: 2px solid var(--border);
+        z-index: 1000;
+    }
+    #mobile-dock .desktop-icon i { font-size: 24px; }
+    #mobile-dock .desktop-icon p { font-size: 0.75rem; }
+    #mobile-dock .desktop-icon { width: auto; padding: 5px; }
+    .window-content {
+        height: auto;
+        width: 100%;
+    }
+}
+
+#projects-window .window-content img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Custom Scrollbar Styles */
+.window::-webkit-scrollbar {
+    width: 12px; 
+    height: 12px; 
+}
+
+.window::-webkit-scrollbar-track {
+    background: var(--window-bg);
+    border: 1px solid var(--border); 
+}
+
+.window::-webkit-scrollbar-thumb {
+    background-color: var(--header); 
+    border: 2px solid var(--window-bg);
+    border-radius: 6px;
+}
+
+.window::-webkit-scrollbar-thumb:hover {
+    background-color: var(--light-header);
+}
+
+.window {
+    scrollbar-width: thin;
+    scrollbar-color: var(--header) var(--window-bg);
+}

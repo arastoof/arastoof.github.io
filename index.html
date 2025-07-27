@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa Arastoo's Desktop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+
+        const imageErrorURL = 'https://placehold.co/600x400/cccccc/ffffff?text=Image+Error';
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="boot-screen" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 text-green-400">
+        <p class="mb-4 text-sm sm:text-base">MUSTAFA-OS v1.0 BIOS</p>
+        <p id="boot-text" class="text-xs sm:text-sm"></p>
+        <div id="progress-bar-container" class="w-1/2 h-6 border-2 border-green-400 mt-4 hidden p-1">
+            <div id="progress-bar" class="h-full bg-green-400" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <main id="desktop" class="hidden h-screen w-screen p-4 flex flex-col items-start">
+        <div class="desktop-icon-container flex flex-col space-y-4">
+            <div class="desktop-icon" data-window="about-window">
+                <i class="fas fa-user-astronaut"></i>
+                <p>ABOUT.md</p>
+            </div>
+            <div class="desktop-icon" data-window="projects-window">
+                <i class="fas fa-rocket"></i>
+                <p>PROJECTS</p>
+            </div>
+            <div class="desktop-icon" data-window="skills-window">
+                <i class="fas fa-terminal"></i>
+                <p>SKILLS.sh</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="about-window" class="window" style="top: 10%; left: 15%; width: 32rem;">
+        <div class="window-header">
+            <span class="title">ABOUT.md</span>
+            <span class="close-btn" data-window="about-window">X</span>
+        </div>
+        <div class="window-content">
+            <h2 class="text-4xl mb-4" style="color: var(--header);">Mustafa Arastoo</h2>
+            <p>Third year Computer Science student at the University of Liverpool. I've worked on everything from video games to AI projects to websites, and I'm eager to learn more. Currently interning at 
+                <a href="https://www.metricomm.com" target="_blank" class="hover:underline mt-2">Metricomm &rarr;</a> as an AI/Software Engineer.</p>
+            <div class="mt-6 flex space-x-4">
+                <a href="https://github.com/arastoof" target="_blank" class="text-3xl" style="color: var(--header);"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/mustafa-arastoo-0a491031b/" target="_blank" class="text-3xl" style="color: var(--header);"><i class="fab fa-linkedin"></i></a>
+                <a href="Mustafa Arastoo CV.pdf" target="_blank" class="text-3xl" style="color: var(--header);" title="View my CV"><i class="fas fa-file-alt"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects-window" class="window" style="top: 20%; left: 30%; width: 48rem;">
+        <div class="window-header">
+            <span class="title">C:\Projects</span>
+            <span class="close-btn" data-window="projects-window">X</span>
+        </div>
+        <div class="window-content grid grid-cols-1 md:grid-cols-2 gap-6 content-start">
+            <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
+                <img src="images/b1.png" onerror="this.onerror=null;this.src=imageErrorURL" alt="B1 English Test" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
+                <h3 class="text-2xl" style="color: var(--header);">B1 English Test Preparation</h3>
+                <p>A website created to help immigrants prepare for the B1 English test, which is required to complete the British naturalisation process. (HTML, CSS, JS)</p>
+                <div class="mt-auto pt-2">
+                    <a href="https://arastoof.github.io/b1Test" target="_blank" class="hover:underline mt-2 block">View Site &rarr;</a>
+                    <a href="https://github.com/arastoof/b1Test" target="_blank" class="hover:underline mt-2 block">View Codebase &rarr;</a>
+                </div>
+            </div>
+            <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
+                <img src="images/rhythm.png" onerror="this.onerror=null;this.src=imageErrorURL" alt="Rhythm" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
+                <h3 class="text-2xl" style="color: var(--header);">Rhythm</h3>
+                <p>A social media platform for music reviews created as a group project at university. (HTML, CSS, JS, Python, Docker, Git)</p>
+                 <div class="mt-auto pt-2">
+                    <a href="https://student.csc.liv.ac.uk/~sgmarast/rhythm/" target="_blank" class="hover:underline mt-2 block">View Site &rarr;</a>
+                </div>
+            </div>
+            <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
+                <img src="images/ascend.png" onerror="this.onerror=null;this.src=imageErrorURL;" alt="Ascend the Labyrinth" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
+                <h3 class="text-2xl" style="color: var(--header);">Ascend the Labyrinth</h3>
+                <p>Procedurally generated horror game created as my A-Levels project. (Unity, C#)</p>
+            </div>
+            <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
+                <img src="images/palcentre.png" onerror="this.onerror=null;this.src=imageErrorURL;" alt="palcentre.org" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
+                <h3 class="text-2xl" style="color: var(--header);">palcentre.org</h3>
+                <p>Website for a local charity. (Wix)</p>
+                <div class="mt-auto pt-2">
+                    <a href="https://palcentre.org" target="_blank" class="hover:underline mt-2 block">View Site &rarr;</a>
+                </div>
+            </div>
+            <div class="border-2 p-2 flex flex-col" style="border-color: var(--border);">
+                <img src="images/daredevil.png" onerror="this.onerror=null;this.src=imageErrorURL;" alt="Daredevil" class="w-full h-32 object-cover mb-2 project-image cursor-pointer">
+                <h3 class="text-2xl" style="color: var(--header);">Daredevil (WIP)</h3>
+                <p>VR game about defending the Earth from an invading alien army by using fruit.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="skills-window" class="window" style="top: 40%; left: 5%; width: 28rem;">
+        <div class="window-header">
+            <span class="title">SKILLS.sh</span>
+            <span class="close-btn" data-window="skills-window">X</span>
+        </div>
+        <div class="window-content">
+            <p>> Python, C#, C, JavaScript, PHP, Java, Docker, Git, Linux</p>
+        </div>
+    </div>
+
+    <div id="image-viewer-window" class="window" style="top: 10%; left: 15%; width: 64rem;">
+        <div class="window-header">
+            <span id="image-viewer-title" class="title">Image Viewer</span>
+            <span class="close-btn" data-window="image-viewer-window">X</span>
+        </div>
+        <div class="window-content flex items-center justify-center p-1">
+            <img id="image-viewer-img" src="" alt="Enlarged project image" class="max-w-full max-h-full object-contain">
+        </div>
+    </div>
+
+    <div id="taskbar" class="hidden">
+        <div class="flex items-center space-x-2">
+            <button id="theme-toggle" class="taskbar-icon text-lg" title="Toggle Theme"><i class="fas fa-lightbulb"></i></button>
+            <div id="taskbar-icons" class="flex items-center space-x-1 border-l border-gray-500/50 pl-2">
+                <div class="taskbar-icon" data-window="about-window" title="ABOUT.md">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <div class="taskbar-icon" data-window="projects-window" title="PROJECTS">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="taskbar-icon" data-window="skills-window" title="SKILLS.sh">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div id="taskbar-image-viewer-icon" class="taskbar-icon hidden" data-window="image-viewer-window" title="Image Viewer">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4 text-lg">
+            <a href="https://github.com/arastoof" target="_blank" style="color: var(--bg);" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/mustafa-arastoo-0a491031b/" target="_blank" style="color: var(--bg);" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <div id="clock" class="text-sm ml-2" style="font-family: 'VT323', monospace;"></div>
+        </div>
+    </div>
+
+    <div id="mobile-topbar" class="hidden">
+        <span id="mobile-clock"></span>
+        <button id="mobile-theme-toggle" class="px-2 text-lg"><i class="fas fa-lightbulb"></i></button>
+    </div>
+
+    <div id="mobile-dock">
+        <div class="desktop-icon" data-window="about-window">
+            <i class="fas fa-user-astronaut"></i>
+            <p>About</p>
+        </div>
+        <div class="desktop-icon" data-window="projects-window">
+            <i class="fas fa-rocket"></i>
+            <p>Projects</p>
+        </div>
+        <div class="desktop-icon" data-window="skills-window">
+            <i class="fas fa-terminal"></i>
+            <p>Skills</p>
+        </div>
+        <a href="https://github.com/arastoof" target="_blank" class="desktop-icon">
+            <i class="fab fa-github"></i>
+            <p>GitHub</p>
+        </a>
+        <a href="https://linkedin.com/in/mustafa-arastoo-0a491031b/" target="_blank" class="desktop-icon">
+            <i class="fab fa-linkedin"></i>
+            <p>LinkedIn</p>
+        </a>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
