@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const windowId = icon.getAttribute('data-window');
         const windowEl = document.getElementById(windowId);
         if (windowEl) {
-            windowEl.style.display = 'block';
+            windowEl.style.display = 'flex';
             zIndexCounter++;
             bringToFront(windowEl);
         }

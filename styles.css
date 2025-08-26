@@ -53,10 +53,11 @@ body {
     backdrop-filter: blur(10px);
     box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
     resize: both;
-    overflow: auto;
+    overflow: hidden;
     min-width: 320px;
     min-height: 200px;
     display: none;
+    flex-direction: column;
 }
 .window-header {
     background-color: var(--header);
@@ -77,6 +78,8 @@ body {
     object-fit: contain; 
     max-height: 650px; 
     overflow: auto;
+    flex: 1;
+    min-height: 0;
 }
 .close-btn { cursor: pointer; font-weight: bold; }
 
