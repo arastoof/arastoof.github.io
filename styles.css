@@ -149,20 +149,13 @@ body {
     #mobile-topbar { display: flex; }
     .window {
         position: fixed;
-        top: 0 !important;
+        top: calc(40px + env(safe-area-inset-top, 0px)) !important;
         left: 0 !important;
         width: 100% !important;
-        height: 100% !important;
+        height: calc(100% - 120px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
         border: none;
         resize: none;
         max-width: none !important;
-        
-        padding-bottom: 80px;
-        padding-top: 40px;
-        
-        padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-        padding-top: calc(40px + env(safe-area-inset-top, 0px));
-
         display: flex;
         flex-direction: column;
     }
