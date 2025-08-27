@@ -255,4 +255,69 @@ document.addEventListener('DOMContentLoaded', function() {
         #image-viewer-window .window-content { overflow: hidden; }
     `;
     document.head.appendChild(styleSheet);
+
+    // --- Starfield Animation ---
+    const canvas = document.getElementById('starfield-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+
+        let stars = [];
+        const numStars = 250;
+
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createStars() {
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5 + 0.5,
+                    speed: Math.random() * 0.4 + 0.1
+                });
+            }
+        }
+
+        function drawStars() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function updateStars() {
+            stars.forEach(star => {
+                star.y += star.speed;
+                if (star.y > canvas.height + star.size) {
+                    star.y = 0 - star.size;
+                    star.x = Math.random() * canvas.width;
+                }
+            });
+        }
+
+        let animationFrameId;
+        function animate() {
+            updateStars();
+            drawStars();
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            if(animationFrameId) cancelAnimationFrame(animationFrameId);
+            setCanvasSize();
+            createStars();
+            animate();
+        });
+
+        setCanvasSize();
+        createStars();
+        animate();
+    }
 });
