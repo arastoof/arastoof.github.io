@@ -21,6 +21,7 @@ html.dark {
     --header: var(--dark-header);
     --border: var(--dark-border);
     --icon-bg: var(--dark-icon-bg);
+    --particle-color: #FFFFFF;
 }
 
 html:not(.dark) {
@@ -30,6 +31,7 @@ html:not(.dark) {
     --header: var(--light-header);
     --border: var(--light-border);
     --icon-bg: var(--light-icon-bg);
+    --particle-color: #333333;
 }
 
 body {

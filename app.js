@@ -284,7 +284,8 @@ document.addEventListener('DOMContentLoaded', function() {
         function drawStars() {
             if (!ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white';
+            const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim();
+            ctx.fillStyle = particleColor || 'white';
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
