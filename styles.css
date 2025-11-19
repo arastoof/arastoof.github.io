@@ -39,8 +39,88 @@ body {
     background-color: var(--bg);
     color: var(--text);
     transition: background-color 0.5s, color 0.5s;
-    overflow: hidden;
 }
+
+.hidden {
+    display: none;
+}
+
+#professional-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+#professional-view .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--header);
+    margin-bottom: 1.5rem;
+}
+
+.social-links a {
+    color: var(--header);
+    font-size: 2rem;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--text);
+}
+
+.launch-btn, #show-more-projects {
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--header);
+    color: var(--bg);
+    border: none;
+    padding: 10px 20px;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.launch-btn:hover, #show-more-projects:hover {
+    background-color: var(--text);
+    color: var(--bg);
+}
+
+.accordion-container {
+    width: 100%;
+    max-width: 48rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    border: 2px solid var(--border);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+#prof-experience {
+    border: 2px solid var(--border);
+    padding: 1rem;
+}
+
+#project-arrow {
+    color: var(--header);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#project-arrow.rotated {
+    transform: rotate(180deg);
+}
+
 
 #starfield-canvas {
     position: fixed;
