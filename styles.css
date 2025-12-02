@@ -157,13 +157,13 @@ body {
     align-items: center;
 }
 .window-header .title { font-family: 'Press Start 2P', cursive; font-size: 0.8rem; }
-.window-content { 
-    padding: 15px; 
+.window-content {
+    padding: 15px;
     font-size: 1.5rem;
     height: auto;
     width: 100%;
-    object-fit: contain; 
-    max-height: 650px; 
+    object-fit: contain;
+    max-height: 650px;
     overflow: auto;
     flex: 1;
     min-height: 0;
@@ -278,17 +278,17 @@ body {
 
 /* Custom Scrollbar Styles */
 .window::-webkit-scrollbar {
-    width: 12px; 
-    height: 12px; 
+    width: 12px;
+    height: 12px;
 }
 
 .window::-webkit-scrollbar-track {
     background: var(--window-bg);
-    border: 1px solid var(--border); 
+    border: 1px solid var(--border);
 }
 
 .window::-webkit-scrollbar-thumb {
-    background-color: var(--header); 
+    background-color: var(--header);
     border: 2px solid var(--window-bg);
     border-radius: 6px;
 }

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('prof-pic').src = profile.picture;
         document.getElementById('prof-name').textContent = profile.name;
         document.getElementById('prof-bio').textContent = profile.bio;
-        
+
         const socialLinks = document.getElementById('prof-social');
         socialLinks.innerHTML = `
             <a href="${profile.social.github}" target="_blank"><i class="fab fa-github"></i></a>
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    
+
     function launchOS() {
         // --- Boot Sequence ---
         const bootScreen = document.getElementById('boot-screen');
@@ -209,12 +209,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const openWindowIcons = document.querySelectorAll('[data-window]');
         const closeBtns = document.querySelectorAll('.close-btn');
         let zIndexCounter = 10;
-        
+
         const imageViewerWindow = document.getElementById('image-viewer-window');
         const imageViewerImg = document.getElementById('image-viewer-img');
         const imageViewerTitle = document.getElementById('image-viewer-title');
         const taskbarImageViewerIcon = document.getElementById('taskbar-image-viewer-icon');
-        
+
         function bringToFront(elmnt) {
             windows.forEach(win => {
                 const currentZIndex = parseInt(win.style.zIndex);
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 bringToFront(windowEl);
             }
         }
-        
+
         openWindowIcons.forEach(icon => {
             if (icon.tagName.toLowerCase() !== 'a') {
                 icon.addEventListener('click', () => openWindow(icon));
@@ -256,14 +256,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
+
         function openImageViewer(imgElement) {
             const imgSrc = imgElement.src;
             const imgTitle = imgElement.alt || 'Image Viewer';
             const contentEl = imageViewerWindow.querySelector('.window-content');
 
             if (!imageViewerWindow || !imageViewerImg || !imageViewerTitle || !contentEl) return;
-            
+
             const tempImg = new Image();
             tempImg.onload = () => {
                 const taskbarHeight = document.getElementById('taskbar').offsetHeight || 0;
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             tempImg.src = imgSrc;
         }
-        
+
         // Add listener to dynamically created project images
         const projectImages = document.querySelectorAll('.project-image');
         projectImages.forEach(img => {
@@ -352,7 +352,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.onmousemove = null;
             }
         }
-        
+
+        const powerBtn = document.getElementById('power-btn');
+        if (powerBtn) {
+            powerBtn.addEventListener('click', () => {
+                document.getElementById('os-view').classList.add('hidden');
+                document.getElementById('professional-view').style.display = 'flex';
+            });
+        }
+
         const themeToggle = document.getElementById('theme-toggle');
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
         function toggleTheme() {
@@ -361,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
         if(mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
-        
+
         if (window.ResizeObserver && window.innerWidth > 767) {
             const resizeObserver = new ResizeObserver(entries => {
                 for (const entry of entries) {
@@ -445,4 +453,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     init();
-});
+})
