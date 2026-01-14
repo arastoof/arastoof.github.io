@@ -43,6 +43,7 @@ html.dark {
     border-radius: 50%;
     margin-right: 2rem;
     border: 5px solid var(--prof-accent);
+    object-fit: cover;
 }
 
 .prof-header-content h1 {
