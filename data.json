@@ -19,6 +19,14 @@
       "codeUrl": "https://github.com/arastoof/b1Test"
     },
     {
+      "title": "VisionGrabber",
+      "image": "images/VisionGrabber.png",
+      "description": "A desktop tool that takes screenshots and processes them using local or cloud-based LLMs. It can turn screenshots of things like maths equations and tables and convert them into structured formats like LaTeX, HTML and Markdown",
+      "tags": [".NET", "C#", "XAML"],
+      "siteUrl": null,
+      "codeUrl": "https://github.com/arastoof/VisionGrabber"
+    },
+    {
       "title": "Rhythm",
       "image": "images/rhythm.png",
       "description": "A social media platform for music reviews created as a group project at university.",
