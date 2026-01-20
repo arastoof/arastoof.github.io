@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="professional.css">
 </head>
+
 <body>
     <div id="professional-view">
         <div class="prof-container">
@@ -50,6 +52,12 @@
 
             </section>
         </div>
+        <div id="prof-lightbox" class="prof-lightbox-overlay">
+            <div class="prof-lightbox-content">
+                <span class="prof-lightbox-close">&times;</span>
+                <img id="prof-lightbox-img" src="" alt="Project preview">
+            </div>
+        </div>
         <div id="easter-egg" title="Launch MustafaOS">
             <i class="fas fa-terminal"></i>
         </div>
@@ -57,7 +65,8 @@
 
     <div id="os-view" class="hidden">
         <canvas id="starfield-canvas"></canvas>
-        <div id="boot-screen" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 text-green-400">
+        <div id="boot-screen"
+            class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 text-green-400">
             <p class="mb-4 text-sm sm:text-base">MUSTAFA-OS v0.8 BIOS</p>
             <p id="boot-text" class="text-xs sm:text-sm"></p>
             <div id="progress-bar-container" class="w-1/2 h-6 border-2 border-green-400 mt-4 hidden p-1">
@@ -67,51 +76,72 @@
 
         <main id="desktop" class="hidden h-screen w-screen p-4 flex flex-col items-start">
             <div class="desktop-icon-container flex flex-col space-y-4">
-                <div class="desktop-icon" data-window="about-window"><i class="fas fa-user-astronaut"></i><p>PROFILE.md</p></div>
-                <div class="desktop-icon" data-window="projects-window"><i class="fas fa-rocket"></i><p>PROJECTS</p></div>
-                <div class="desktop-icon" data-window="skills-window"><i class="fas fa-terminal"></i><p>SKILLS.sh</p></div>
-                <div class="desktop-icon" data-window="experience-window"><i class="fas fa-briefcase"></i><p>EXPERIENCE.txt</p></div>
+                <div class="desktop-icon" data-window="about-window"><i class="fas fa-user-astronaut"></i>
+                    <p>PROFILE.md</p>
+                </div>
+                <div class="desktop-icon" data-window="projects-window"><i class="fas fa-rocket"></i>
+                    <p>PROJECTS</p>
+                </div>
+                <div class="desktop-icon" data-window="skills-window"><i class="fas fa-terminal"></i>
+                    <p>SKILLS.sh</p>
+                </div>
+                <div class="desktop-icon" data-window="experience-window"><i class="fas fa-briefcase"></i>
+                    <p>EXPERIENCE.txt</p>
+                </div>
             </div>
         </main>
 
         <div id="about-window" class="window" style="top: 10%; left: 15%; width: 32rem;">
-            <div class="window-header"><span class="title">PROFILE.md</span><span class="close-btn" data-window="about-window">X</span></div>
+            <div class="window-header"><span class="title">PROFILE.md</span><span class="close-btn"
+                    data-window="about-window">X</span></div>
             <div id="about-content" class="window-content"></div>
         </div>
 
         <div id="projects-window" class="window" style="top: 20%; left: 30%; width: 48rem;">
-            <div class="window-header"><span class="title">C:\Projects</span><span class="close-btn" data-window="projects-window">X</span></div>
+            <div class="window-header"><span class="title">C:\Projects</span><span class="close-btn"
+                    data-window="projects-window">X</span></div>
             <div id="projects-content" class="window-content grid grid-cols-1 md:grid-cols-2 gap-6 content-start"></div>
         </div>
 
         <div id="skills-window" class="window" style="top: 40%; left: 5%; width: 28rem;">
-            <div class="window-header"><span class="title">SKILLS.sh</span><span class="close-btn" data-window="skills-window">X</span></div>
+            <div class="window-header"><span class="title">SKILLS.sh</span><span class="close-btn"
+                    data-window="skills-window">X</span></div>
             <div id="skills-content" class="window-content"></div>
         </div>
 
         <div id="experience-window" class="window" style="top: 50%; left: 25%; width: 32rem;">
-            <div class="window-header"><span class="title">EXPERIENCE.txt</span><span class="close-btn" data-window="experience-window">X</span></div>
+            <div class="window-header"><span class="title">EXPERIENCE.txt</span><span class="close-btn"
+                    data-window="experience-window">X</span></div>
             <div id="experience-content" class="window-content"></div>
         </div>
 
         <div id="image-viewer-window" class="window" style="top: 10%; left: 15%; width: 64rem;">
-            <div class="window-header"><span id="image-viewer-title" class="title">Image Viewer</span><span class="close-btn" data-window="image-viewer-window">X</span></div>
-            <div class="window-content flex items-center justify-center p-1"><img id="image-viewer-img" src="" alt="Enlarged project image" class="max-w-full max-h-full object-contain"></div>
+            <div class="window-header"><span id="image-viewer-title" class="title">Image Viewer</span><span
+                    class="close-btn" data-window="image-viewer-window">X</span></div>
+            <div class="window-content flex items-center justify-center p-1"><img id="image-viewer-img" src=""
+                    alt="Enlarged project image" class="max-w-full max-h-full object-contain"></div>
         </div>
 
         <div id="taskbar" class="hidden">
             <div class="flex items-center space-x-2">
-                <button id="theme-toggle" class="taskbar-icon text-lg" title="Toggle Theme"><i class="fas fa-lightbulb"></i></button>
+                <button id="theme-toggle" class="taskbar-icon text-lg" title="Toggle Theme"><i
+                        class="fas fa-lightbulb"></i></button>
                 <div id="taskbar-icons" class="flex items-center space-x-1 border-l border-gray-500/50 pl-2">
-                    <div class="taskbar-icon" data-window="about-window" title="ABOUT.md"><i class="fas fa-user-astronaut"></i></div>
-                    <div class="taskbar-icon" data-window="projects-window" title="PROJECTS"><i class="fas fa-rocket"></i></div>
-                    <div class="taskbar-icon" data-window="skills-window" title="SKILLS.sh"><i class="fas fa-terminal"></i></div>
-                    <div class="taskbar-icon" data-window="experience-window" title="EXPERIENCE.txt"><i class="fas fa-briefcase"></i></div>
-                    <div id="taskbar-image-viewer-icon" class="taskbar-icon hidden" data-window="image-viewer-window" title="Image Viewer"><i class="fas fa-image"></i></div>
+                    <div class="taskbar-icon" data-window="about-window" title="ABOUT.md"><i
+                            class="fas fa-user-astronaut"></i></div>
+                    <div class="taskbar-icon" data-window="projects-window" title="PROJECTS"><i
+                            class="fas fa-rocket"></i></div>
+                    <div class="taskbar-icon" data-window="skills-window" title="SKILLS.sh"><i
+                            class="fas fa-terminal"></i></div>
+                    <div class="taskbar-icon" data-window="experience-window" title="EXPERIENCE.txt"><i
+                            class="fas fa-briefcase"></i></div>
+                    <div id="taskbar-image-viewer-icon" class="taskbar-icon hidden" data-window="image-viewer-window"
+                        title="Image Viewer"><i class="fas fa-image"></i></div>
                 </div>
             </div>
             <div id="taskbar-right" class="flex items-center space-x-4 text-lg">
-                <button id="power-btn" class="taskbar-icon text-lg" title="Go to Professional View"><i class="fa fa-power-off"></i></button>
+                <button id="power-btn" class="taskbar-icon text-lg" title="Go to Professional View"><i
+                        class="fa fa-power-off"></i></button>
             </div>
         </div>
 
@@ -121,14 +151,31 @@
         </div>
 
         <div id="mobile-dock">
-            <div class="desktop-icon" data-window="about-window"><i class="fas fa-user-astronaut"></i><p>About</p></div>
-            <div class="desktop-icon" data-window="projects-window"><i class="fas fa-rocket"></i><p>Projects</p></div>
-            <div class="desktop-icon" data-window="skills-window"><i class="fas fa-terminal"></i><p>Skills</p></div>
-            <div class="desktop-icon" data-window="experience-window"><i class="fas fa-briefcase"></i><p>Experience</p></div>
-            <a id="mobile-github" href="" target="_blank" class="desktop-icon"><i class="fab fa-github"></i><p>GitHub</p></a>
-            <a id="mobile-linkedin" href="" target="_blank" class="desktop-icon"><i class="fab fa-linkedin"></i><p>LinkedIn</p></a>
+            <div class="desktop-icon" data-window="about-window"><i class="fas fa-user-astronaut"></i>
+                <p>About</p>
+            </div>
+            <div class="desktop-icon" data-window="projects-window"><i class="fas fa-rocket"></i>
+                <p>Projects</p>
+            </div>
+            <div class="desktop-icon" data-window="skills-window"><i class="fas fa-terminal"></i>
+                <p>Skills</p>
+            </div>
+            <div class="desktop-icon" data-window="experience-window"><i class="fas fa-briefcase"></i>
+                <p>Experience</p>
+            </div>
+            <a id="mobile-github" href="" target="_blank" class="desktop-icon"><i class="fab fa-github"></i>
+                <p>GitHub</p>
+            </a>
+            <a id="mobile-linkedin" href="" target="_blank" class="desktop-icon"><i class="fab fa-linkedin"></i>
+                <p>LinkedIn</p>
+            </a>
+            <div id="mobile-power-btn" class="desktop-icon" title="Return to Professional View"><i
+                    class="fa fa-power-off"></i>
+                <p>Exit</p>
+            </div>
         </div>
     </div>
     <script src="app.js"></script>
 </body>
+
 </html>

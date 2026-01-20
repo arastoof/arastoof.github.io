@@ -5,7 +5,7 @@
     --prof-accent: #007bff;
     --prof-card-bg: #fff;
     --prof-border: #ddd;
-    --prof-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    --prof-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 html.dark {
@@ -15,7 +15,7 @@ html.dark {
     --prof-accent: #00a8ff;
     --prof-card-bg: #1e1e1e;
     --prof-border: #444;
-    --prof-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    --prof-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 #professional-view {
@@ -116,7 +116,8 @@ html.dark {
     gap: 2rem;
 }
 
-.project-card-prof, .experience-card {
+.project-card-prof,
+.experience-card {
     background-color: var(--prof-card-bg);
     border: 1px solid var(--prof-border);
     border-radius: 8px;
@@ -134,8 +135,9 @@ html.dark {
 }
 
 
-.project-card-prof:hover, .experience-card:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+.project-card-prof:hover,
+.experience-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .project-card-prof .project-image-wrapper {
@@ -207,12 +209,20 @@ html.dark {
 }
 
 .experience-card ul {
-    list-style-position: inside;
-    padding-left: 0;
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 .experience-card li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.experience-card li::marker {
+    color: var(--prof-accent);
+    font-size: 1.2em;
 }
 
 #easter-egg {
@@ -270,4 +280,79 @@ html.dark {
     .projects-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Project Image Lightbox */
+.project-card-prof .project-image-wrapper {
+    cursor: pointer;
+}
+
+.project-card-prof .project-image-wrapper:hover img {
+    filter: brightness(1.1);
+    transition: filter 0.3s ease;
+}
+
+.project-card-prof .project-image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 123, 255, 0);
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+
+.project-card-prof .project-image-wrapper:hover::after {
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.prof-lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.prof-lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.prof-lightbox-content {
+    max-width: 75%;
+    max-height: 75%;
+    position: relative;
+}
+
+.prof-lightbox-content img {
+    max-width: 100%;
+    max-height: 75vh;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.prof-lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.prof-lightbox-close:hover {
+    color: var(--prof-accent);
 }

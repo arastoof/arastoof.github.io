@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let siteData = {};
 
     async function init() {
@@ -52,6 +52,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `).join('');
+
+        // Lightbox functionality for project images
+        const lightbox = document.getElementById('prof-lightbox');
+        const lightboxImg = document.getElementById('prof-lightbox-img');
+        const lightboxClose = document.querySelector('.prof-lightbox-close');
+
+        if (lightbox && lightboxImg) {
+            // Add click handlers to all project image wrappers
+            document.querySelectorAll('.project-card-prof .project-image-wrapper').forEach(wrapper => {
+                wrapper.addEventListener('click', () => {
+                    const img = wrapper.querySelector('img');
+                    if (img) {
+                        lightboxImg.src = img.src;
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // Close lightbox on overlay click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('prof-lightbox-close')) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
 
         // Experience
         const experienceGrid = document.getElementById('prof-experience-grid');
@@ -181,9 +216,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         clearInterval(interval);
                         setTimeout(() => {
                             bootScreen.style.display = 'none';
-                            if(desktop) desktop.classList.remove('hidden');
-                            if(taskbar) taskbar.classList.remove('hidden');
-                            if(aboutWindow) aboutWindow.style.display = 'flex';
+                            if (desktop) desktop.classList.remove('hidden');
+                            if (taskbar) taskbar.classList.remove('hidden');
+
+                            // On mobile, ensure only profile window is open initially
+                            if (window.innerWidth <= 767) {
+                                windows.forEach(win => {
+                                    if (win.id !== 'about-window') {
+                                        win.style.display = 'none';
+                                    }
+                                });
+                            }
+
+                            if (aboutWindow) aboutWindow.style.display = 'flex';
                             bringToFront(aboutWindow);
                         }, 400);
                     }
@@ -250,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 windowEl.style.display = 'none';
 
                 if (windowId === 'image-viewer-window') {
-                    if(taskbarImageViewerIcon) taskbarImageViewerIcon.classList.add('hidden');
+                    if (taskbarImageViewerIcon) taskbarImageViewerIcon.classList.add('hidden');
                     const contentEl = windowEl.querySelector('.window-content');
                     if (contentEl) contentEl.style.aspectRatio = 'auto';
                 }
@@ -361,14 +406,23 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        // Mobile power button to return to professional view
+        const mobilePowerBtn = document.getElementById('mobile-power-btn');
+        if (mobilePowerBtn) {
+            mobilePowerBtn.addEventListener('click', () => {
+                document.getElementById('os-view').classList.add('hidden');
+                document.getElementById('professional-view').style.display = 'flex';
+            });
+        }
+
         const themeToggle = document.getElementById('theme-toggle');
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
         function toggleTheme() {
             document.documentElement.classList.toggle('dark');
             localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
         }
-        if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
-        if(mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
 
         if (window.ResizeObserver && window.innerWidth > 767) {
             const resizeObserver = new ResizeObserver(entries => {
@@ -384,7 +438,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             windows.forEach(win => {
-                if(getComputedStyle(win).resize === 'both' || getComputedStyle(win).resize === 'horizontal') {
+                if (getComputedStyle(win).resize === 'both' || getComputedStyle(win).resize === 'horizontal') {
                     resizeObserver.observe(win);
                 }
             });
@@ -441,7 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 animationFrameId = requestAnimationFrame(animate);
             }
             window.addEventListener('resize', () => {
-                if(animationFrameId) cancelAnimationFrame(animationFrameId);
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
                 setCanvasSize();
                 createStars();
                 animate();
